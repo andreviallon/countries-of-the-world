@@ -6,8 +6,6 @@ import { createStyles, makeStyles } from '@material-ui/core/styles'
 const useStyles = makeStyles(() =>
     createStyles({
         navbar: {
-            color: 'inherit',
-            backgroundColor: 'white',
             flexGrow: 1,
             height: '70px',
             display: 'flex',
