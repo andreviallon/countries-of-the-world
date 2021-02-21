@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import CountryCard from '../components/CountryCard'
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
