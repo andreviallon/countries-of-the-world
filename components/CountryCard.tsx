@@ -1,6 +1,4 @@
-import Image from 'next/image'
 import Card from '@material-ui/core/Card'
-import CardActionArea from '@material-ui/core/CardActionArea'
 import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import Button from '@material-ui/core/Button'
@@ -32,38 +30,38 @@ const useStyles = makeStyles({
 const CountryCard = ({ country }) => {
     const classes = useStyles();
 
+    console.log('country', country);
+
     return (
         <Card className={classes.card}>
-            <CardActionArea>
-                <CardContent className={classes.cardContent}>
-                    <img className={classes.image} src={country.flag} />
-                    <Box p={1}>
-                        <Typography gutterBottom variant="h6" component="h2">
-                            {country.name}
+            <CardContent className={classes.cardContent}>
+                <img className={classes.image} src={country.flag} />
+                <Box p={1} pt={1} pb={0}>
+                    <Typography gutterBottom variant="h6" component="h2">
+                        {country.name}
+                    </Typography>
+                    <Typography gutterBottom variant="subtitle1" component="p">
+                        Population:
+                        <Typography className={classes.bold} variant="subtitle1" component="span">
+                            {country.population ? country.population : 'Unknown'}
                         </Typography>
-                        <Typography gutterBottom variant="subtitle1" component="p">
-                            Population:
-                            <Typography className={classes.bold} variant="subtitle1" component="span">
-                                {country.population}
-                            </Typography>
+                    </Typography>
+                    <Typography gutterBottom variant="subtitle1" component="p">
+                        Region:
+                        <Typography className={classes.bold} variant="subtitle1" component="span">
+                            {country.region ? country.region : 'Unknown'}
                         </Typography>
-                        <Typography gutterBottom variant="subtitle1" component="p">
-                            Region:
-                            <Typography className={classes.bold} variant="subtitle1" component="span">
-                                {country.region}
-                            </Typography>
+                    </Typography>
+                    <Typography gutterBottom variant="subtitle1" component="p">
+                        Capital:
+                        <Typography className={classes.bold} variant="subtitle1" component="span">
+                            {country.capital ? country.capital : 'Unknown'}
                         </Typography>
-                        <Typography gutterBottom variant="subtitle1" component="p">
-                            Capital:
-                            <Typography className={classes.bold} variant="subtitle1" component="span">
-                                {country.capital}
-                            </Typography>
-                        </Typography>
-                    </Box>
-                </CardContent>
-            </CardActionArea>
+                    </Typography>
+                </Box>
+            </CardContent>
             <CardActions>
-                <Button size="small" color="primary">Learn More</Button>
+                <Button size="small" variant="contained" color="primary" disableElevation>Learn More</Button>
             </CardActions>
         </Card>
     )
