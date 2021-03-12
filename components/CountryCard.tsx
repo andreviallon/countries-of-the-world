@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
 import { makeStyles } from '@material-ui/core/styles'
+import { Country } from '../models/Country'
 
 const useStyles = makeStyles({
     card: {
@@ -27,7 +28,12 @@ const useStyles = makeStyles({
     }
 });
 
-const CountryCard = ({ country }) => {
+interface CountryCard {
+    country: Country;
+}
+
+
+const CountryCard: React.FC<CountryCard> = ({ country }) => {
     const classes = useStyles();
 
     const formatPop = () => {
