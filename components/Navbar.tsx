@@ -10,7 +10,9 @@ const useStyles = makeStyles(() =>
             height: '70px',
             display: 'flex',
             justifyContent: 'center',
-            padding: '0 2rem'
+            padding: '0 2rem',
+            position: 'fixed',
+            top: 0
         }
     })
 )
@@ -20,7 +22,7 @@ const Navbar = () => {
 
     return (
         <div>
-            <AppBar position="static" className={classes.navbar}>
+            <AppBar className={classes.navbar}>
                 <Typography variant="h6" color="inherit">Countries of the world</Typography>
             </AppBar>
         </div>

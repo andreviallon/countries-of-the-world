@@ -30,7 +30,9 @@ const useStyles = makeStyles({
 const CountryCard = ({ country }) => {
     const classes = useStyles();
 
-    console.log('country', country);
+    const formatPop = () => {
+        return country.population.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+    };
 
     return (
         <Card className={classes.card}>
@@ -43,7 +45,7 @@ const CountryCard = ({ country }) => {
                     <Typography gutterBottom variant="subtitle1" component="p">
                         Population:
                         <Typography className={classes.bold} variant="subtitle1" component="span">
-                            {country.population ? country.population : 'Unknown'}
+                            {country?.population ? formatPop() : 'Unknown'}
                         </Typography>
                     </Typography>
                     <Typography gutterBottom variant="subtitle1" component="p">
