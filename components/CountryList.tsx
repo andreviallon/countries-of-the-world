@@ -29,6 +29,7 @@ const CountryList: React.FC<CountryList> = ({ countries }) => {
 
     useEffect(() => {
         setCountryNames(countries.map((country: Country) => country.name));
+        setFilterCountries(countries);
     }, []);
 
     const handleSearch = (searchQuery: string) => {
