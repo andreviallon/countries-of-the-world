@@ -20,7 +20,8 @@ const useStyles = makeStyles({
     image: {
         width: '100%',
         height: '200px',
-        objectFit: 'cover'
+        objectFit: 'cover',
+        boxShadow: '0 0 4px rgba(0, 0, 0, 0.5)'
     },
     bold: {
         fontWeight: 500,

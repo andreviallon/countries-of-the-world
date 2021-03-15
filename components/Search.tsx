@@ -12,18 +12,14 @@ const useStyles = makeStyles(() =>
 
 const Search = ({ onSearch }) => {
     const classes = useStyles();
-
     const [searchValue, setSearchValue] = useState('');
-
     const debouncedSearchTerm = useDebounce(searchValue, 500);
 
     useEffect(() => {
         onSearch(searchValue);
     },[debouncedSearchTerm]);
 
-    const handleChange = event => {
-        setSearchValue(event.target.value);
-    };
+    const handleChange = event => setSearchValue(event.target.value);
 
     return (
         <TextField className={classes.input} label="Search for a country" variant="filled" value={searchValue} onChange={handleChange} />
