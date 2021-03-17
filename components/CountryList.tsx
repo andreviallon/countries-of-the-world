@@ -26,13 +26,11 @@ interface CountryList {
 
 const CountryList: React.FC<CountryList> = ({ countries }) => {
     const classes = useStyles();
-    const [countryNames, setCountryNames] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
     const [filteredRegion, setFilteredRegion] = useState(filterRegionOptionEnum.ALL_REGIONS);
     const [filterCountries, setFilterCountries] = useState(countries)
 
     useEffect(() => {
-        setCountryNames(countries.map((country: Country) => country.name));
         setFilterCountries(countries);
     }, []);
     
@@ -50,7 +48,7 @@ const CountryList: React.FC<CountryList> = ({ countries }) => {
 
     const filterCountry = () => {
         const filteredCountry = [];
-
+        const countryNames = countries.map((country: Country) => country.name);
         const filteredByNames: string[] = countryNames.filter((country: string) => {
             return country.toLowerCase().includes(searchQuery.toLowerCase());
         });
