@@ -6,7 +6,7 @@ import { makeStyles, createStyles, Box, Typography } from '@material-ui/core'
 import { Country } from '../models/Country'
 import { useState, useEffect } from 'react'
 import FilterRegion from './FilterRegion'
-import { filterRegionOptions, filterRegionOptionEnum } from '../models/FilterContinent'
+import { filterRegionOptionEnum } from '../models/FilterContinent'
 
 const useStyles = makeStyles(() =>
     createStyles({
@@ -28,34 +28,46 @@ const CountryList: React.FC<CountryList> = ({ countries }) => {
     const classes = useStyles();
     const [countryNames, setCountryNames] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
-    const [filteredRegion, setFilteredRegion] = useState(filterRegionOptionEnum.NONE);
+    const [filteredRegion, setFilteredRegion] = useState(filterRegionOptionEnum.ALL_REGIONS);
     const [filterCountries, setFilterCountries] = useState(countries)
 
     useEffect(() => {
         setCountryNames(countries.map((country: Country) => country.name));
         setFilterCountries(countries);
     }, []);
-
-    const handleSearch = (searchQuery: string) => {
-        setSearchQuery(searchQuery);
+    
+    useEffect(() => {
         filterCountry();
+    }, [searchQuery, filteredRegion]);
+
+    const handleSearch = (query: string) => {
+        setSearchQuery(query);
     }
 
     const handleFilterRegion = (filterRegionValue: filterRegionOptionEnum) => {
         setFilteredRegion(filterRegionValue);
-        filterCountry();
     }
 
     const filterCountry = () => {
+        const filteredCountry = [];
+
         const filteredByNames: string[] = countryNames.filter((country: string) => {
             return country.toLowerCase().includes(searchQuery.toLowerCase());
         });
 
-        const filteredByRegion = filteredRegion === filterRegionOptionEnum.NONE ? filteredByNames : filterCountries.filter(country => country.region === filteredRegion.toString());
+        for (const countryName of filteredByNames) {
+            countries.filter(country => {
+                if (filteredRegion === filterRegionOptionEnum.ALL_REGIONS) {
+                    if (country.name === countryName) {
+                        filteredCountry.push(country);
+                    }
+                } else if (country.name === countryName && country.region === filteredRegion.toString()) {
+                    filteredCountry.push(country);
+                }
+            })
+        }
 
-        // setFilterCountries(filterCountries.reduce((acc: Country[], country: Country) => {
-        //     return filteredNames.find(name => name === country.name) ? [...acc, country] : acc;
-        // }, []));
+        setFilterCountries(filteredCountry);
     }
 
     return (
@@ -79,7 +91,7 @@ const CountryList: React.FC<CountryList> = ({ countries }) => {
                             <CountryCard country={country} />
                         </Grid>))
                     :   <Typography className={classes.noResults} variant="h6" component="span">
-                            No countries found...
+                            No country found...
                         </Typography>
                 }
             </Grid>

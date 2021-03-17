@@ -18,9 +18,7 @@ const FilterRegion = ({ onFilterRegion }) => {
         onFilterRegion(filterValue);
     }, [filterValue]);
 
-    const handleChange = event => {
-        setFilterValue(event.target.value);
-    };
+    const handleChange = event => setFilterValue(event.target.value);
 
     return (
         <FormControl variant="filled" className={classes.form}>

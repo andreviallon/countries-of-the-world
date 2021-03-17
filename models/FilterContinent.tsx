@@ -1,16 +1,16 @@
 export enum filterRegionOptionEnum {
-    NONE = 'None',
+    ALL_REGIONS = 'All Regions',
     AFRICA = 'Africa',
-    AMERICA = 'America',
+    AMERICAS = 'Americas',
     ASIA = 'Asia',
     EUROPE = 'Europe',
     OCEANIA = 'Oceania'
 }
 
 export const filterRegionOptions: filterRegionOptionEnum[] = [
-    filterRegionOptionEnum.NONE,
+    filterRegionOptionEnum.ALL_REGIONS,
     filterRegionOptionEnum.AFRICA,
-    filterRegionOptionEnum.AMERICA,
+    filterRegionOptionEnum.AMERICAS,
     filterRegionOptionEnum.ASIA,
     filterRegionOptionEnum.EUROPE,
     filterRegionOptionEnum.OCEANIA,
