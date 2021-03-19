@@ -4,6 +4,8 @@ import Button from '@material-ui/core/Button'
 import { Country } from '../../models/Country'
 import ArrowBack from '@material-ui/icons/ArrowBack'
 import { makeStyles, createStyles, Theme } from '@material-ui/core'
+import CountryDetails from '../../components/CountryDetails'
+import { Box } from '@material-ui/core';
 
 export const getStaticPaths = async () => {
   const res = await fetch('https://restcountries.eu/rest/v2/all');
@@ -41,7 +43,7 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 )
 
-const CountryDetail: React.FC<Props> = ({ country }) => {
+const CountryDetailPage: React.FC<Props> = ({ country }) => {
   const classes = useStyles();
 
   return (
@@ -55,10 +57,12 @@ const CountryDetail: React.FC<Props> = ({ country }) => {
               <ArrowBack className={classes.back}/>Back
             </Button>
           </Link>
-          <h3>{ country.name }</h3>
+          <Box mt={3}>
+            <CountryDetails country={country} />
+          </Box>
         </div>
       </>
   );
 }
 
-export default CountryDetail
+export default CountryDetailPage

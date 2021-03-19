@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
 import { makeStyles } from '@material-ui/core/styles'
 import { Country } from '../models/Country'
+import formatPop from '../utils/formatPopulation'
 
 const useStyles = makeStyles({
     card: {
@@ -38,10 +39,6 @@ interface CountryCard {
 const CountryCard: React.FC<CountryCard> = ({ country }) => {
     const classes = useStyles();
 
-    const formatPop = () => {
-        return country.population.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
-    };
-
     return (
         <Card className={classes.card}>
             <CardContent className={classes.cardContent}>
@@ -53,7 +50,7 @@ const CountryCard: React.FC<CountryCard> = ({ country }) => {
                     <Typography gutterBottom variant="subtitle1" component="p">
                         Population:
                         <Typography className={classes.bold} variant="subtitle1" component="span">
-                            {country?.population ? formatPop() : 'Unknown'}
+                            {country?.population ? formatPop(country.population) : 'Unknown'}
                         </Typography>
                     </Typography>
                     <Typography gutterBottom variant="subtitle1" component="p">
