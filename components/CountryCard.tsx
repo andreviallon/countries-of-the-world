@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
@@ -70,7 +71,9 @@ const CountryCard: React.FC<CountryCard> = ({ country }) => {
                 </Box>
             </CardContent>
             <CardActions>
-                <Button size="small" variant="contained" color="primary" disableElevation>Learn More</Button>
+                <Link href={'/country/' + country.alpha3Code}>
+                    <Button variant="contained" color="primary" disableElevation>Learn More</Button>
+                </Link>
             </CardActions>
         </Card>
     )

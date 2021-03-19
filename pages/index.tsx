@@ -1,7 +1,8 @@
+import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import CountryList from '../components/CountryList'
 
-export const getStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const res = await fetch('https://restcountries.eu/rest/v2/all');
   const data = await res.json();
 

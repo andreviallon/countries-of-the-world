@@ -13,6 +13,7 @@ export interface Language {
 
 export interface Country {
     capital: string;
+    alpha3Code: string;
     currencies: Currency[];
     flag: string;
     languages: Language[];
